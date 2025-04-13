@@ -9,7 +9,7 @@ const button = document.querySelector("button");
 
 
 button.addEventListener("click",function () {
-    window.location.href="http://localhost:3000/changeBoard"
+    window.location.href="/changeBoard"
 })
 
 let dragPiece = null;

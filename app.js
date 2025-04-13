@@ -5,6 +5,7 @@ import { Chess } from 'chess.js';
 import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,7 +13,7 @@ const __dirname = dirname(__filename);
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-
+dotenv.config();
 const chess = new Chess();
 let players = {};
 let currentPlayer = "w";
@@ -89,8 +90,8 @@ socket.on("move",function (move) {
 
 
 
+const PORT = process.env.PORT || 5000;
 
-
-server.listen(3000, function () {
-    console.log("Server started at 3000");
+server.listen(PORT, function () {
+    console.log(`Server started at ${PORT}`);
 });

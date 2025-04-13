@@ -4,7 +4,7 @@
                 const selectedId = button.id;
                 localStorage.setItem("boardTheme", selectedId);
                 
-                window.location.href="http://localhost:3000/"
+                window.location.href="/"
             })
 
         })
