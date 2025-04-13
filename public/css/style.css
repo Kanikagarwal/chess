@@ -1,0 +1,105 @@
+:root{
+ 
+--dark:#999999;
+--light:#ffffff;
+
+
+}
+
+.chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows: repeat(8, minmax(0, 1fr));
+    width: 90vh;
+    height: 90vh;
+    transform: rotate(0deg);
+}
+
+
+.piece.white {
+    color: white;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 1));
+}
+
+.piece.black {
+    color: black;
+}
+
+.flipped {
+    transform: rotate(180deg);
+}
+
+.square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.square.light {
+ 
+    background-color: var(--light);
+}
+
+.square.dark {
+
+    background-color: var(--dark);
+}
+
+.piece {
+    font-size: 36px;
+    cursor: pointer;
+    font-family: "Arial Unicode MS", "Segoe UI Symbol", "Noto Emoji", sans-serif;
+}
+
+.piece.draggable {
+    cursor: grab;
+}
+
+.dragging {
+    opacity: 0.5;
+}
+
+/* Rotate pieces for black player */
+.flipped .piece {
+    transform: rotate(180deg);
+}
+
+.square.checkmate {
+    background-color: red !important;
+    animation: flash 1s infinite alternate;
+  }
+  
+  @keyframes flash {
+    0% { background-color: red; }
+    100% { background-color: darkred; }
+  }
+  
+  .square.check{
+    background-color: rgb(247, 86, 28);
+  }
+
+  .turn,.btn{
+    color: black;
+    width: 67vh;
+    font-size: 2rem;
+    background-color: var(--dark);
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-family: "Arial Unicode MS", "Segoe UI Symbol", "Noto Emoji", sans-serif;
+  }
+
+  .btn{
+    background-color: var(--light);
+    font-size: 1.1rem;
+    padding: 3px;
+    margin-left: 4px;
+    width: 22vh;
+    /* font-family: sans-serif; */
+    cursor: pointer;
+  }
+
+button{
+    font-family: sans-serif;
+    cursor: pointer;
+    word-spacing: 0.01rem;
+}

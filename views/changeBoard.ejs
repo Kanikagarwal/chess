@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/assets/pawn.png" type="image/x-icon">
+
+    <title>Chess</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .opt{
+            width: 90vh;
+            height: 100vh;
+        }
+        .two{
+            margin-bottom: 7px;
+        }
+        .two button {
+            margin: 15px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid transparent;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out; /* Smooth transitions */
+        }
+
+        /* Frosted glass effect on hover */
+        .two button:hover::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15); /* Light glass effect */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            z-index: 1;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Optional: Make the button slightly bigger on hover */
+        .two button:hover {
+            transform: scale(1.05); /* Slightly enlarge the button */
+            transition: transform 0.3s ease-in-out;
+        }
+
+    </style>
+</head>
+<body class="bg-zinc-900 flex justify-center items-center">
+    <div class="opt flex flex-col justify-center items-center">
+        <div class="two flex justify-center items-center">
+            <button id="blue"><img src="./assets/blue.png" alt=""></button>
+            <button id="green"><img src="./assets/green.png" alt=""></button>
+        </div>
+        <div class="two flex justify-center items-center">
+            <button id="orange"><img src="./assets/orange.png" alt=""></button>
+            <button id="grey"><img src="./assets/grey.png" alt=""></button>
+        </div>
+
+    </div>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js" integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+" crossorigin="anonymous"></script>
+    <script src="/js/changeBoard.js"></script>
+</body>
+</html>
