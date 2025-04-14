@@ -2,11 +2,13 @@ const socket = io();
 
 const chess = new Chess();
 
+
+
 const boardElement = document.querySelector(".chessboard");
 const turn = document.querySelector(".turn");
 const button = document.querySelector("button");
-
-
+const moveBox = document.querySelector(".moves");
+let boolResult = false;
 
 button.addEventListener("click",function () {
     window.location.href="/changeBoard"
@@ -65,7 +67,7 @@ const renderBoard = () => {
         squareElement.appendChild(pieceElement);
 
         if(winner!=null){
-            // pieceElement.innerText="";
+          
             if(winner=="b"){
                 turn.innerText=`♛ wins!`
             }
@@ -109,6 +111,10 @@ const handleMove = (source, target) => {
     to: `${String.fromCharCode(97 + target.col)}${8 - target.row}`,
     promotion: "q",
   };
+  
+  
+  
+console.log(move);
 
   socket.emit("move", move);
 };
@@ -144,8 +150,39 @@ socket.on("boardState", function (fen) {
   chess.load(fen);
   renderBoard();
 });
+let moveCount = 0; // total number of moves (white + black)
+let moveList = []; // array to hold full lines like: '1. e4 e5'
+
 socket.on("move", function (move) {
   chess.move(move);
+  moveCount++;
+
+  // Build the current move line
+  let latestMove = move.to; // move in Standard Algebraic Notation (e.g., "e4", "Nf3")
+
+  if (moveCount % 2 === 1) {
+    // White's move - start a new line
+    let line = `${Math.ceil(moveCount / 2)}. ${latestMove}`;
+    moveList.push(line);
+  } else {
+    // Black's move - add to last line
+    moveList[moveList.length - 1] += ` ${latestMove}`;
+  }
+  
+
+  // Update the move box
+  moveBox.innerHTML = ""; // clear existing
+  moveList.forEach((line) => {
+    let lineElem = document.createElement("div");
+    lineElem.innerText = line;
+    moveBox.appendChild(lineElem);
+  });
+  const lastChild = moveBox.lastElementChild;
+if (lastChild) {
+  lastChild.style.textShadow = "0 0 8px #FFD700, 0 0 15px #FFD700";
+}
+  moveBox.scrollTop = moveBox.scrollHeight;
+
   renderBoard();
 });
 
@@ -198,6 +235,8 @@ socket.on("currentPlayer", function (currentPlayer) {
     renderBoard();
   });
 
+ 
+
     
   let color = {};
   const colorId = localStorage.getItem("boardTheme") || "green";
@@ -228,4 +267,9 @@ socket.on("currentPlayer", function (currentPlayer) {
   
       document.documentElement.style.setProperty('--light', color.light);
       document.documentElement.style.setProperty('--dark', color.dark);
+
+
+
+    
+      
 renderBoard();

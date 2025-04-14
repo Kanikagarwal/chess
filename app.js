@@ -55,6 +55,8 @@ socket.on("disconnect",function () {
 })
 
 socket.on("move",function (move) {
+    console.log(move);
+    
     try{
         if(chess.turn()=="w" && socket.id!==players.white)return;
         if(chess.turn()=="b" && socket.id!==players.black)return;
@@ -69,6 +71,7 @@ socket.on("move",function (move) {
         io.emit("checkMateStatus",chess.isCheckmate())
         io.emit("checkStatus",chess.inCheck())
         io.emit("currentPlayer",currentPlayer)
+        
        }
        else{
         console.log("Something went wrong");

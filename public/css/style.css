@@ -10,9 +10,11 @@
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
     grid-template-rows: repeat(8, minmax(0, 1fr));
-    width: 90vh;
-    height: 90vh;
+    width: 80vh;
+    height: 80vh;
     transform: rotate(0deg);
+    border: 10px solid rgba(255, 255, 255, 0.837);
+    border-radius: 10px;
 }
 
 
@@ -80,7 +82,7 @@
 
   .turn,.btn{
     color: black;
-    width: 67vh;
+    width: 80vh;
     font-size: 2rem;
     background-color: var(--dark);
     margin-bottom: 0.5rem;
@@ -92,14 +94,32 @@
     background-color: var(--light);
     font-size: 1.1rem;
     padding: 3px;
-    margin-left: 4px;
-    width: 22vh;
+    /* margin-left: 4px; */
+    width: 80vh;
+    border-radius: 10px;
+    height: 7vh;
     /* font-family: sans-serif; */
     cursor: pointer;
+   
   }
 
 button{
+    text-align: center;
     font-family: sans-serif;
     cursor: pointer;
     word-spacing: 0.01rem;
 }
+
+.moves{
+    width: 80vh;
+    height: 80vh;
+    background-color: #ffffff;
+    padding: 20px;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
+.moves div{
+    font-size: 40px;
+}
+
