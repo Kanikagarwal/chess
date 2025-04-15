@@ -85,7 +85,9 @@ socket.on("move",function (move) {
     }
 })
 
-
+socket.on("requestBoardState", () => {
+    socket.emit("boardState", chess.fen());
+  });
 
 
 })

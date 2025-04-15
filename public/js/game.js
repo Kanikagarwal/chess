@@ -147,6 +147,7 @@ socket.on("spectatorRole", function () {
 });
 
 socket.on("boardState", function (fen) {
+  if(!fen)return;
   chess.load(fen);
   renderBoard();
 });
@@ -235,8 +236,9 @@ socket.on("currentPlayer", function (currentPlayer) {
     renderBoard();
   });
 
- 
+  socket.emit("requestBoardState");
 
+  
     
   let color = {};
   const colorId = localStorage.getItem("boardTheme") || "green";
@@ -267,9 +269,11 @@ socket.on("currentPlayer", function (currentPlayer) {
   
       document.documentElement.style.setProperty('--light', color.light);
       document.documentElement.style.setProperty('--dark', color.dark);
-
+      if(document.readyState=="uninitialized"){
+        renderBoard()
+      }
 
 
     
       
-renderBoard();
+// renderBoard();
