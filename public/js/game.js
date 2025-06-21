@@ -1,12 +1,9 @@
 const socket = io();
 
 const chess = new Chess();
-
-
-
 const boardElement = document.querySelector(".chessboard");
 const turn = document.querySelector(".turn");
-const button = document.querySelector("button");
+const button = document.querySelector(".btn");
 const moveBox = document.querySelector(".moves");
 let boolResult = false;
 

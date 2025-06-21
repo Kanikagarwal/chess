@@ -17,6 +17,8 @@ dotenv.config();
 const chess = new Chess();
 let players = {};
 let currentPlayer = "w";
+let gameOver = false;
+
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -32,6 +34,15 @@ app.get("/changeBoard", function (req, res) {
 
 io.on("connection",function (socket) {
 console.log("connected"); 
+if (gameOver) {
+    chess.reset(); // Reset board state
+    currentPlayer = "w";
+    gameOver = false;
+    io.emit("boardState", chess.fen());
+    io.emit("currentPlayer", currentPlayer);
+    console.log("Game was over — reset triggered on new connection.");
+}
+
 if(!players.white){
     players.white=socket.id;
     socket.emit("playerRole","w")
@@ -68,7 +79,13 @@ socket.on("move",function (move) {
         
         io.emit("move",move);
         io.emit("boardState",chess.fen());
-        io.emit("checkMateStatus",chess.isCheckmate())
+        // io.emit("checkMateStatus",chess.isCheckmate())
+        const isCheckmate = chess.isCheckmate();
+io.emit("checkMateStatus", isCheckmate);
+if (isCheckmate) {
+    gameOver = true;
+}
+
         io.emit("checkStatus",chess.inCheck())
         io.emit("currentPlayer",currentPlayer)
         
