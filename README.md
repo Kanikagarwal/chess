@@ -31,16 +31,16 @@ This is a real-time two-player online chess game built using **Node.js**, **Expr
   - Second user → Black
 - Valid move enforcement and turn-based play
 - Real-time board synchronization using Socket.IO
-- Change board colour feature
-- Move Tracking
+- Change board color feature
+- Move tracking
 
 ---
 
-## 📱 Live Preview
+## 📸 Screenshots
 
-(./ss/1.png)
-(./ss/2.png)
-(./ss/3.png)
+<img src="./ss/1.png" width="400" />
+<img src="./ss/2.png" width="400" />
+<img src="./ss/3.png" width="400" />
 
 ---
 
