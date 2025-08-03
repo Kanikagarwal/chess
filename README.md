@@ -38,9 +38,9 @@ This is a real-time two-player online chess game built using **Node.js**, **Expr
 
 ## 📱 Live Preview
 
-[Chessboard](./ss/1.png)
-[change Colour](./ss/2.png)
-[after change](./ss/3.png)
+(./ss/1.png)
+(./ss/2.png)
+(./ss/3.png)
 
 ---
 
